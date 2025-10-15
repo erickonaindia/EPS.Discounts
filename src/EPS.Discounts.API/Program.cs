@@ -17,7 +17,7 @@ builder.WebHost.ConfigureKestrel(k =>
 });
 
 // SignalR for progress notifications TODO
-//builder.Services.AddSignalR();
+builder.Services.AddSignalR();
 
 builder.Services.AddGrpc(options => { options.EnableDetailedErrors = true; });
 
