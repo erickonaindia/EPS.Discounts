@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=discounts
+    ports: ["5432:5432"]
+    volumes:
+      - ./.datadir:/var/lib/postgresql/data
+      - ./.postgres-conf:/etc/postgresql/postgresql.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Postgres: Host=db;Port=5432;Database=discounts;Username=postgres;Password=postgres
+      ASPNETCORE_ENVIRONMENT: Production
+    ports: ["8080:8080"]

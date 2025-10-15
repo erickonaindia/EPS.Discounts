@@ -1,0 +1,22 @@
+{
+  "name": "nb-discounts-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 5173"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "1.10.0",
+    "@connectrpc/connect": "1.4.0",
+    "@connectrpc/connect-web": "1.4.0"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.58.0",
+    "@bufbuild/protoc-gen-es": "^2.9.0",
+    "typescript": "5.6.2",
+    "vite": "5.4.3"
+  }
+}
