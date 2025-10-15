@@ -16,8 +16,10 @@ builder.WebHost.ConfigureKestrel(k =>
     k.ListenAnyIP(8080, o => o.Protocols = HttpProtocols.Http1AndHttp2);
 });
 
-// SignalR for progress notifications
-builder.Services.AddSignalR();
+// SignalR for progress notifications TODO
+//builder.Services.AddSignalR();
+
+builder.Services.AddGrpc(options => { options.EnableDetailedErrors = true; });
 
 // Progress notifications (DI)
 builder.Services.AddSingleton<IProgressNotifier, ProgressNotifier>();
@@ -74,5 +76,4 @@ app.MapHub<ProgressHub>("/hubs/progress");
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.MapGet("/", () => "EPS.Discounts gRPC service. Use a gRPC client.");
 app.Run();
